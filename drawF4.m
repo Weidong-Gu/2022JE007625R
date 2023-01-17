@@ -1,10 +1,10 @@
-% We use irfu codes in these codes, please import irfu codes and run irf.m before run these codes
+% We use irfu codes in these scripts, please import irfu codes and run irf.m before run these scripts
 
 % All Juno and Galileo data presented here are publicly available from NASAs Planetary Data System (https://pds-ppi.igpp.ucla.edu/). 
 % The Juno-MAG dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519711
-% The Juno-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519708 
-% The Galileo-MAG dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519668 
-% The Galileo-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519683.
+% The Juno-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1520498 
+% The Galileo-MAG dataset is from NASA Planetary Data System. https://doi.org/10.17189/fq45-wv97
+% The Galileo-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519682
 
 clear all
 

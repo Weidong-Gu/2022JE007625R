@@ -1,12 +1,12 @@
-% We use irfu codes in these codes, please import irfu codes and run irf.m before run these codes
+% We use irfu codes in these scripts, please import irfu codes and run irf.m before run these scripts
 
 % All Juno and Galileo data presented here are publicly available from NASAs Planetary Data System (https://pds-ppi.igpp.ucla.edu/). 
 % The Juno-MAG dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519711
-% The Juno-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519708 
-% The Galileo-MAG dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519668 
-% The Galileo-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519683.
+% The Juno-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1520498 
+% The Galileo-MAG dataset is from NASA Planetary Data System. https://doi.org/10.17189/fq45-wv97
+% The Galileo-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519682
 
-% The arrow of text is drawn after the figure plotted, instead of drawn by this code.
+% The arrow of text is drawn after the figure plotted, instead of drawn by this script.
 
 clear all
 
@@ -43,20 +43,22 @@ set(h(5),'position',[0.15 0.12 0.7 0.14])
 % Data loaded here is managed from Galileo-wave data.
 % Data time has been marked in the figure plotted.
 
-load('2000112220001203.mat');
+load('galileodata.mat');
+load('galileodep0.mat');
+load('galileodep1.mat');
 
 % dep0 is time data, dep1 is frequency data.
 % data is denary logarithm of the plasma wave spectrogram of the electric field.
 
 hold(h(1),'on');
-irf_spectrogram(h(1),dep0,data,dep1)
+irf_spectrogram(h(1),galileodep0,galileodata,galileodep1)
 set(h(1),'YScale','log');
 set(h(1),'ytick',[0.1 10 1000]);
 set(h(1),'Fontsize',10)
 colormap(jet)
 
-irf_zoom(h(1),'x',[dep0(1) dep0(end)])
-irf_zoom(h(1),'y',[dep1(1)/1000 dep1(end)/1000])
+irf_zoom(h(1),'x',[galileodep0(1) galileodep0(end)])
+irf_zoom(h(1),'y',[galileodep1(1)/1000 galileodep1(end)/1000])
 xlabel(h(1),'');
 xticks(h(1),'')
 c=colorbar(h(1));
@@ -160,16 +162,16 @@ xticks(h(5),'auto')
 xticklabels(h(5),'auto')
 title(h(5),'Periodic Analysis to 2000-11-24/06 UT to 2000-11-30/15 UT')
 
-% Imperative statements below sometimes can't be done due to unknown reason, but run them again after running over this code can be of use.
+% Imperative statements below sometimes can't be done due to unknown reason, but running them again after running over this script can be of use.
 
-txt1=text(h(1),5e4,6,['a'],'Color','r','FontSize',25);
+txt1=text(h(1),2.8175e7,60,['a'],'Color','r','FontSize',25);
 txt2=text(h(2),5e4,6,['b'],'Color','r','FontSize',25);
 txt3=text(h(3),5e4,1.6,['c'],'Color','r','FontSize',25);
 txt4=text(h(4),5e4,2,['d'],'Color','r','FontSize',25);
 txt5=text(h(5),1.5,12,['e'],'Color','r','FontSize',25);
 
-ylabel(h(1),'Frequency(kHz)','FontSize',12,'Position',[-6e4,8]);
+ylabel(h(1),'Frequency(kHz)','FontSize',12,'Position',[2.806e7,10]);
 ylabel(h(2),'B_{total}(nT)','Interpreter','Tex','FontSize',12,'Position',[-4.5e4,3.8])
 ylabel(h(3),'\deltaB(nT)','Interpreter','Tex','FontSize',12,'Position',[-6e4,0])
-ylabel(h(4),'ln(\deltaB^{2})(ln(nT^{2}))','Interpreter','Tex','FontSize',12,'Position',[-6e4,-6])
+ylabel(h(4),'ln(\deltaB^{2})(ln(nT^{2}))','Interpreter','Tex','FontSize',12,'Position',[-6e4,-2])
 ylabel(h(5),'PSD(nT^{2}/Hz)','FontSize',12,'Position',[0.5, 7.5])

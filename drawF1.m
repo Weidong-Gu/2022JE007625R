@@ -1,12 +1,12 @@
-% We use irfu codes in these codes, please import irfu codes and run irf.m before run these codes
+% We use irfu codes in these scripts, please import irfu codes and run irf.m before run these scripts
 
 % All Juno and Galileo data presented here are publicly available from NASAs Planetary Data System (https://pds-ppi.igpp.ucla.edu/). 
 % The Juno-MAG dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519711
-% The Juno-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519708 
-% The Galileo-MAG dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519668 
-% The Galileo-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519683.
+% The Juno-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1520498 
+% The Galileo-MAG dataset is from NASA Planetary Data System. https://doi.org/10.17189/fq45-wv97
+% The Galileo-Wave dataset is from NASA Planetary Data System. https://doi.org/10.17189/1519682
 
-% The arrow of text is drawn after the figure plotted, instead of drawn by this code.
+% The arrow of text is drawn after the figure plotted, instead of drawn by this script.
 
 clear all
 
@@ -37,19 +37,19 @@ set(h(5),'position',[0.15 0.12 0.7 0.14])
 % dep0 is time data, dep1 is frequency data.
 % data is denary logarithm of the plasma wave spectrogram of the electric field.
 
-load('dep1.mat')
-load('dep0.mat')
-load('data.mat')
+load('junodep1.mat')
+load('junodep0.mat')
+load('junodata.mat')
 
 hold(h(1),'on');
-irf_spectrogram(h(1),dep0,data(:,1:44),dep1(1:44))
+irf_spectrogram(h(1),junodep0,junodata(:,1:44),junodep1(1:44))
 set(h(1),'YScale','log');
 set(h(1),'ytick',[0.1 1 10]);
 set(h(1),'Fontsize',10)
 colormap(jet)
 ylabel(h(1),'frequency(kHz)','FontSize',12);
-irf_zoom(h(1),'x',[dep0(1) dep0(end)])
-irf_zoom(h(1),'y',[dep1(1)/1000 dep1(44)/1000])
+irf_zoom(h(1),'x',[junodep0(1) junodep0(end)])
+irf_zoom(h(1),'y',[junodep1(1)/1000 junodep1(44)/1000])
 xlabel(h(1),'');
 xticks(h(1),'')
 c=colorbar(h(1));
@@ -157,7 +157,7 @@ uistack(h(3),"bottom");
 uistack(h(4),"bottom");
 uistack(h(5),"bottom");
 
-% Imperative statements below sometimes can't be done due to unknown reason, but run them again after running over this code can be of use.
+% Imperative statements below sometimes can't be done due to unknown reason, but running them again after running over this script can be of use.
 
 txt1=text(h(1),1.2e4,4,'a','Color','r','FontSize',25);
 txt2=text(h(2),9.4674e8,9,'b','Color','r','FontSize',25);
